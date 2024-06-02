@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h1>Lista de Proyectos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Profesor</th>
+                <th>Tema</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proyecto in proyectos %}
+                <tr>
+                    <td>{{ proyecto.nombre }}</td>
+                    <td>{{ proyecto.descripcion }}</td>
+                    <td>{{ proyecto.profesor }}</td>
+                    <td>{{ proyecto.tema }}</td>
+                    <td>
+                        <a href="{% url 'editar_proyecto' proyecto.id %}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

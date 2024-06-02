@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Crear Proyecto Final</h2>
+
+<form action="{% url 'crear' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="txtNombre" class="form-label">Nombre Proyecto</label>
+        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre Proyecto">
+      </div>
+    <div class="mb-3">
+        <label for="txtEstudiante" class="form-label">Nombre Estudiante</label>
+        <input type="text" class="form-control" id="txtEstudiante" name="txtEstudiante" placeholder="Nombre Apellido">
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="txtEmail" class="form-label">Email Estudiante</label>
+        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="estudiante@usm.cl">
+      </div>
+      <div class="mb-3">
+        <label for="cboTema" class="form-label">Tema</label>
+        <select class="form-select" aria-label="Default select example" id="cboTema" name="cboTema">
+            <option selected>Selecciona una opción</option>
+            <option value="0">Software</option>
+            <option value="1">Hardware</option>
+            <option value="2">Tesis</option>
+            <option value="3">Pyme</option>
+        </select>
+      <div class="mb-3">
+        <label for="txtDescripcion" class="form-label">Descripcion</label>
+        <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="3"></textarea>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Enviar">
+
+</form>
+
+{% endblock %}

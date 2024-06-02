@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h3>Ver Proyectos</h3>
+
+<form method="GET" action="{% url 'ver' %}">
+  <label for="tiene_profesor">Filtrar por asignación de profesor:</label>
+  <select name="tiene_profesor" id="tiene_profesor">
+      <option value="">Todos</option>
+      <option value="asignado" {% if tiene_profesor == 'asignado' %}selected{% endif %}>Asignado</option>
+      <option value="no_asignado" {% if tiene_profesor == 'no_asignado' %}selected{% endif %}>No asignado</option>
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre Proyecto</th>
+        <th scope="col">Estudiante</th>
+        <th scope="col">Email</th>
+        <th scope="col">Tema</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Profesor</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for proyecto in proyectos %}
+      <tr>
+          <td>{{ proyecto.nombre }}</td>
+          <td>{{ proyecto.estudiante }}</td>
+          <td>{{ proyecto.email }}</td>
+          <td>{{ proyecto.tema }}</td>
+          <td>{{ proyecto.descripcion }}</td>
+          <td>
+              {% if proyecto.profesor %}
+                  {{ proyecto.profesor }}
+              {% else %}
+                  <button onclick="asignarProfesor({{ proyecto.id }}, this)">Patrocinar</button>
+              {% endif %}
+          </td>
+      </tr>
+      {% endfor %}
+        
+    </tbody>
+  </table>
+
+{% endblock %}
